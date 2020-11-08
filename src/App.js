@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Container from 'components/Container';
+import 'styles/global.scss';
+import useLPStock from 'utils/useLPStock';
+import { groupBy, throttle } from 'utils/helpers';
 
-function App() {
+const App = () => {
+  const [filterValue, setFilterValue] = useState();
+  const stockList = groupBy(useLPStock(filterValue), 'artist');
+
+  const handleSearchChange = e => throttle(setFilterValue(e.target.value));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <Container>
+      <h1>Music Matters - Estoque</h1>
+      <input defaultValue={filterValue} onChange={handleSearchChange} placeholder='Pesquisa'/>
+      <hr/>
+
+        {Object.entries(stockList).map(([band, albums])=> (
+          <div key={`${band}_albuns`}>
+            <div>
+              <h2>{band}</h2>
+            </div>
+            {albums.map((album, index) => (
+              <p key={`album_${album.title}_${index}`}>
+                {album.title} - (R$ {album.price})
+              </p>
+            ))}
+            <hr/>
+          </div>
+        ))}
+
+    </Container>
+  )
+};
 
 export default App;

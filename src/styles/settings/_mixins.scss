@@ -1,0 +1,21 @@
+@function breakpoint-min($name) {
+  $min: map-get($grid-breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+@mixin breakpoint($nameMin, $nameMax:"") {
+  $min: breakpoint-min($nameMin);
+  $max: breakpoint-min($nameMax);
+
+  @if $min and $max {
+    @media (min-width: $min) and (max-width: $max - 1) {
+      @content;
+    }
+  } @else if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

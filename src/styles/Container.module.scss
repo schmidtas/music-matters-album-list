@@ -1,0 +1,16 @@
+@import "./settings";
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding-right: rem(15);
+  padding-left: rem(15);
+  margin-right: auto;
+  margin-left: auto;
+
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    @include breakpoint($breakpoint) {
+      max-width: $container-max-width;
+    }
+  }
+}

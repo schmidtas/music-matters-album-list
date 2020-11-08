@@ -1,0 +1,8 @@
+@function strip-unit($int) {
+  @return $int / ($int * 0 + 1);
+}
+
+@function rem($int) {
+  $size: strip-unit($int);
+  @return $size / 16 * 1rem;
+}
