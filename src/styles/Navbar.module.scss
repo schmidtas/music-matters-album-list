@@ -1,0 +1,45 @@
+@import "./settings";
+
+.navbar {
+  background-color: $black;
+
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    height: rem(100);
+  }
+
+  &__social {
+    &-link {
+      color: $gold;
+      text-decoration: none;
+      font-size: 0;
+
+      &+& {
+        margin-left: rem(15);
+      }
+
+      &:after {
+        display: inline-block;
+        height: rem(30);
+        width: rem(30);
+      }
+
+      &--instagram {
+        &:after {
+          content: url($icon-ig);
+        }
+      }
+
+      &--facebook {
+        &:after {
+          content: url($icon-fb);
+        }
+      }
+    }
+  }
+}

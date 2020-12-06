@@ -5,3 +5,7 @@ export const MUSIC_MATTERS_SHEET_ID = process.env.REACT_APP_MUSIC_MATTERS_SHEET_
 export const STOCK_SHEET_PARAMS = ['ESTOQUE', 'A2:F3500'];
 export const PRICE_SHEET_PARAMS = ['PRECOS', 'A2:B30'];
 
+export const SOCIAL_NETWORKS = {
+  INSTAGRAM: 'https://www.instagram.com/musicmatters.recs/',
+  FACEBOOK: 'https://www.facebook.com/musicmatters381/',
+}

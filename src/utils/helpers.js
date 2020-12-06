@@ -16,3 +16,5 @@ export const throttle = (func, wait = 100) => {
     }
   };
 }
+
+export const isObjectEmpty = obj => typeof obj === 'object' && !Object.keys(obj).length;
