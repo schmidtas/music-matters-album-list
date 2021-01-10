@@ -24,16 +24,28 @@
     }
   }
 
-  &__search {
+  &__search,
+  &__select {
     width: 100%;
+    height: rem(45);
     padding: rem(10) rem(5);
     border: 0;
+    border-radius: 0;
     border-bottom: 1px solid $gold;
     font-family: $font;
+    font-weight: normal;
     font-size: rem(16);
 
     @include breakpoint(md) {
-      width: rem(200);
+      width: rem(160);
+    }
+  }
+
+  &__select {
+    margin-left: 0;
+    
+    @include breakpoint(md) {
+      margin-left: rem(10);
     }
   }
 }

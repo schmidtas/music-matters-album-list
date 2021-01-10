@@ -26,13 +26,21 @@ export const normalizeStock = (stock = [], prices) => {
   return normalizedStock;
 }
 
-export const filterStock = (stock, filterValue) => {
-  if (!filterValue) return stock;
+export const filterStock = (stock, searchValue, styleValue) => {
+  if (!searchValue && !styleValue) return stock;
 
-  const lowerFilterValue = filterValue.toLowerCase();
-  return stock.filter(item =>
-    item.title.toLowerCase().includes(lowerFilterValue.trim()) || item.artist.toLowerCase().includes(lowerFilterValue.trim())
-  );
+  const lowerFilterValue = searchValue?.toLowerCase().trim();
+
+  return stock.filter(item => {
+    const containsSearch = searchValue ? (
+      item.title.toLowerCase().includes(lowerFilterValue) ||
+      item.artist.toLowerCase().includes(lowerFilterValue)
+    ) : true;
+
+    const matchStyle = styleValue ? item.style === styleValue : true;
+
+    return containsSearch && matchStyle;
+  });
 }
 
 export const getApiUrl = params =>

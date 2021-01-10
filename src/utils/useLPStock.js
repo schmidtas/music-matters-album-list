@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import { sortBy } from 'lodash';
 import { normalizeStock, filterStock, getApiUrl } from 'utils/stockUtils';
 import { STOCK_SHEET_PARAMS, PRICE_SHEET_PARAMS } from 'utils/constants';
 
-const useLPStock = filterValue => {
+const useLPStock = (searchValue, styleValue) => {
   const [stock, setStock] = useState();
   const [priceRanges, setPriceRanges] = useState();
   const [styleOptions, setStyleOptions] = useState([]);
@@ -42,7 +43,11 @@ const useLPStock = filterValue => {
   }, [priceRanges]);
 
   const normalizedStock = normalizeStock(stock, priceRanges);
-  return [filterStock(normalizedStock, filterValue), Array.from(styleOptions), isLoading];
+  return [
+    filterStock(normalizedStock, searchValue, styleValue),
+    sortBy(Array.from(styleOptions)),
+    isLoading
+  ];
 }
 
 export default useLPStock;

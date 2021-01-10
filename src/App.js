@@ -10,15 +10,20 @@ import 'styles/global.scss';
 import useLPStock from 'utils/useLPStock';
 
 const App = () => {
-  const [filterValue, setFilterValue] = useState();
-  const [stock, , isLoading] = useLPStock(filterValue);
+  const [searchValue, setSearchValue] = useState();
+  const [selectedStyle, setSelectedStyle] = useState();
+  const [stock, styleOptions, isLoading] = useLPStock(searchValue, selectedStyle);
   const stockList = groupBy(stock, 'artist');
 
   return (
     <>
       <Navbar />
       <Container>
-        <ListHeader onSearchChange={setFilterValue} />
+        <ListHeader
+          onSearchChange={setSearchValue}
+          onSelectChange={setSelectedStyle}
+          styleOptions={styleOptions}
+        />
 
         {isLoading ? <Loading /> : <AlbunsList stockList={stockList} />}
 
