@@ -1,7 +1,7 @@
 # Music Matters - LPs Stock [WIP]
 
 Small project to read Music Matters Google Sheet with available LPs and displays in a more readable table with filtering option.\
-**Note:** this project is still WIP, so maybe not everything will be working, code is not optimized in any way and UI will look terrible!
+**Note:** this project is still WIP, so maybe not everything will be working and code is not optimized in any way!
 
 ## Development
 
