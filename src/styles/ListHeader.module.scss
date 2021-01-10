@@ -13,13 +13,27 @@
 
   &__title {
     font-size: rem(25);
+    text-align: center;
+  }
+
+  &__filters {
+    margin-top: rem(20);
+
+    @include breakpoint(md) {
+      margin-top: 0;
+    }
   }
 
   &__search {
-    width: rem(200);
+    width: 100%;
+    padding: rem(10) rem(5);
     border: 0;
     border-bottom: 1px solid $gold;
     font-family: $font;
     font-size: rem(16);
+
+    @include breakpoint(md) {
+      width: rem(200);
+    }
   }
 }

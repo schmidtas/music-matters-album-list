@@ -9,7 +9,7 @@ const ListHeader = ({ onSearchChange }) => {
   return (
     <div className={style['list-header']}>
       <h1 className={style['list-header__title']}>Estoque de Discos</h1>
-      <div>
+      <div className={style['list-header__filters']}>
         <input
           className={style['list-header__search']}
           placeholder='Pesquisar'
