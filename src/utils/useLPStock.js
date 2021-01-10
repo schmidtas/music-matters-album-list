@@ -5,28 +5,44 @@ import { STOCK_SHEET_PARAMS, PRICE_SHEET_PARAMS } from 'utils/constants';
 const useLPStock = filterValue => {
   const [stock, setStock] = useState();
   const [priceRanges, setPriceRanges] = useState();
+  const [styleOptions, setStyleOptions] = useState([]);
+  const [isLoadingStock, setIsLoadingStock] = useState(true);
+  const [isLoadingPrices, setIsLoadingPrices] = useState(true);
+  const isLoading = isLoadingStock || isLoadingPrices;
 
   useEffect(() => {
-    if(!stock) {
+    if (!stock) {
       const stockUrl = getApiUrl(STOCK_SHEET_PARAMS)
       fetch(stockUrl)
         .then(response =>
-          response.json().then(data => setStock(data.values))
+          response.json().then(data => {
+            setStock(data.values);
+            setIsLoadingStock(false);
+          })
         );
+    } else {
+      const styles = new Set();
+      stock.forEach(element => {
+        styles.add(element[3]);
+      });
+      setStyleOptions(styles);
     }
   }, [stock]);
 
   useEffect(() => {
-    if(!priceRanges) {
+    if (!priceRanges) {
       const pricesUrl = getApiUrl(PRICE_SHEET_PARAMS)
       fetch(pricesUrl).then(response =>
-        response.json().then(data => setPriceRanges(data.values))
+        response.json().then(data => {
+          setPriceRanges(data.values);
+          setIsLoadingPrices(false);
+        })
       );
     }
   }, [priceRanges]);
 
   const normalizedStock = normalizeStock(stock, priceRanges);
-  return filterStock(normalizedStock, filterValue);
+  return [filterStock(normalizedStock, filterValue), Array.from(styleOptions), isLoading];
 }
 
 export default useLPStock;
