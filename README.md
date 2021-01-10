@@ -11,4 +11,3 @@ This project uses `create-react-app`, so below commands are available:
 * `yarn start`: Runs the app in the development mode;
 * `yarn test`: Launches the test runner in the interactive watch mode [future work];
 * `yarn build`: Builds the app for production to the `build` folder;
-* `yarn deploy`: Runs `build` command and deploy the code to Firebase project.
