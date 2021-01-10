@@ -35,12 +35,5 @@ export const filterStock = (stock, filterValue) => {
   );
 }
 
-export const groupBy = (xs, key) => {
-  return xs.reduce((rv, x) => {
-    (rv[x[key]] = rv[x[key]] || []).push(x);
-    return rv;
-  }, {});
-};
-
 export const getApiUrl = params =>
   `${GOOGLE_SHEET_API_URL}${MUSIC_MATTERS_SHEET_ID}/values/${params[0]}!${params[1]}?key=${GOOGLE_SHEET_API_KEY}`;

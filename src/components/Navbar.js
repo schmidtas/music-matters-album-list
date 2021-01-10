@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Container from 'components/Container';
 import style from 'styles/Navbar.module.scss';
 import NavbarLogo from 'images/mmlogo.jpg';
@@ -12,7 +13,16 @@ const NavbarLink = ({ href, iconName, children }) => (
     rel='noreferrer'>
     {children}
   </a>
-)
+);
+
+NavbarLink.propTypes = {
+  href: PropTypes.string,
+  iconName: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
+}
 
 const Navbar = () => (
   <header className={style.navbar}>

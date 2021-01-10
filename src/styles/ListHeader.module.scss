@@ -1,0 +1,25 @@
+@import './settings';
+
+.list-header {
+  padding: rem(30) 0;
+  margin-bottom: rem(20);
+  border-bottom: 2px solid $gold;
+
+  @include breakpoint(md) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  };
+
+  &__title {
+    font-size: rem(25);
+  }
+
+  &__search {
+    width: rem(200);
+    border: 0;
+    border-bottom: 1px solid $gold;
+    font-family: $font;
+    font-size: rem(16);
+  }
+}
